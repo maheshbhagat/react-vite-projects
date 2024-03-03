@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { removeTodo } from "../features/todo/todoSlice"
+import { removeTodo, allowEditing } from "../features/todo/todoSlice"
 
 function Todos() {
 
@@ -13,7 +13,10 @@ function Todos() {
                 {todos.map((todo) => (
                     <li key={todo.id} className="bg-slate-800 text-white flex justify-between items-center px-2 py-2">
                         <span>{todo.text}</span>
-                        <button onClick={() => dispatch(removeTodo(todo.id))} className="text-red-500 hover:text-red-700">❌ Remove</button>
+                        <div className="justify-end">
+                            <button onClick={() => dispatch(allowEditing(todo))} className="text-red-500 hover:text-red-700">✏️</button>
+                            <button onClick={() => dispatch(removeTodo(todo.id))} className="text-red-500 hover:text-red-700">❌</button>
+                        </div>
                     </li>
                 ))}
             </ul>
